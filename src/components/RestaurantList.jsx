@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {selectRestaurants} from '../store/restaurantSlice';
 
 export const RestaurantList = ({loadRestaurants, restaurants}) => {
   useEffect(() => {
@@ -19,7 +20,6 @@ export const RestaurantList = ({loadRestaurants, restaurants}) => {
  * Container to get data from the store
  */
 const RestaurantListContainer = () => {
-  const selectRestaurants = state => ({restaurants: state.restaurants.records});
   const restaurants = useSelector(selectRestaurants);
 
   return <RestaurantList restaurants={restaurants} />;
