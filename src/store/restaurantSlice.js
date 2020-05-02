@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+export const loadRestaurants = () => () => {};
+
 const restaurantSlice = createSlice({
   name: 'restaurant',
   initialState: {

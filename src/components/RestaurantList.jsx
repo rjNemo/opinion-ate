@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {selectRestaurants} from '../store/restaurantSlice';
+import {selectRestaurants, loadRestaurants} from '../store/restaurantSlice';
 
 export const RestaurantList = ({loadRestaurants, restaurants}) => {
-  useEffect(() => {
-    loadRestaurants();
-  }, [loadRestaurants]);
+  useEffect(() => loadRestaurants(), [loadRestaurants]);
 
   return (
     <ul>
@@ -22,7 +20,12 @@ export const RestaurantList = ({loadRestaurants, restaurants}) => {
 const RestaurantListContainer = () => {
   const restaurants = useSelector(selectRestaurants);
 
-  return <RestaurantList restaurants={restaurants} />;
+  return (
+    <RestaurantList
+      restaurants={restaurants}
+      loadRestaurants={loadRestaurants}
+    />
+  );
 };
 
 export default RestaurantListContainer;
