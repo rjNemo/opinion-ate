@@ -135,3 +135,42 @@ describe('Smoke test', () => {
   });
 });
 ```
+
+### CI
+
+Use Github actions and perform feature work in branches.
+
+```sh
+git checkout -b ci
+```
+
+Create a `.github/workflows/test.yml` file to configure continuous integration tests.
+
+```yml
+# Workflow name
+name: Test
+# When it is triggered. Push means PR and merges will be tested
+on: [push]
+# Jobs sequence to run. Here only one named 'Test'
+jobs:
+    test:
+        name: Test
+        # one may fix linux version to avoid sudden breaks due to updates
+        runs-on: ubuntu-latest
+        steps:
+            # github/action stable version to check the code
+            - uses: actions/checkout@v2
+            - name: Install dependencies
+            # frozen-lockfile ensures yarn will not install differents dependencies that the one specified in lockfile
+            run: yarn install --frozen-lockfile
+            - name: Unit tests
+            # --watchAll=false so they run only once
+            run: yarn-test --watchAll=false
+            - name: E2E tests
+            # latest stable version
+            - uses: cypress-io/github-action@v1
+            # wait for dev server to start before running E2E tests
+            with:
+                start: yarn start
+                wait-on: 'http://localhost:3000'
+```
