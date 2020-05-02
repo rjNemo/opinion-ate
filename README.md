@@ -98,3 +98,40 @@ module.exports = {
 ```
 
 If not done already install EsLint Extension for VS Code.
+
+### End-to-end testing
+
+Install `cypress`
+
+```sh
+yarn add --dev cypress
+```
+
+and edit `package.json`:
+
+```json
+"scripts": {
+    ...
+    "cypress": "cypress open",
+    ...
+}
+```
+
+Then edit `cypress.json` file to use relative URLs.
+
+```json
+{
+  "baseUrl": "http://localhost:3000"
+}
+```
+
+Remove examples files and create a smoke test
+
+```js
+describe('Smoke test', () => {
+  it('can see Homepage', () => {
+    cy.visit('/');
+    cy.contains('Learn React');
+  });
+});
+```
