@@ -168,7 +168,7 @@ jobs:
               run: yarn-test --watchAll=false
             - name: E2E tests
             # latest stable version
-            - uses: cypress-io/github-action@v1
+              uses: cypress-io/github-action@v1
             # wait for dev server to start before running E2E tests
             with:
                 start: yarn start
