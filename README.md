@@ -1,5 +1,7 @@
 # Outside-in TDD with React
 
+![CI tests](https://github.com/rjNemo/opinion-ate/workflows/Test/badge.svg)
+
 [link](https://outsidein.dev/react/#tech-stack)
 
 ## Stack
@@ -11,7 +13,7 @@
 - Test runner: Jest, React Testing Library
 - End-2-end: Cypress
 - Continuous integration: Github actions
-- Deployment: Netlify
+- Deployment: Render
 
 ## Project Setup
 
@@ -174,3 +176,19 @@ jobs:
                 start: yarn start
                 wait-on: 'http://localhost:3000'
 ```
+
+When work is finished, create a pull request and once the test have passed merge it to master and delete former branch.
+
+### Automatic Deploy in production
+
+Even though our app doesn't do anything yet it's time to deploy.
+
+First build app
+
+```sh
+yarn build
+```
+
+Then configure a new web service in [Render](https://render.com) and set auto-deploy.
+
+This project is deployed at this [URL](https://opinion-ate.onrender.com).
