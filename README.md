@@ -50,3 +50,51 @@ One may use `Trello` or `BugBuster` to do so.
 - node
 - npm or yarn
 - editor: vs code
+
+### Autoformatting
+
+CRA comes with built-in setting but we can have ours so the editor can see them:
+
+```sh
+yarn add --dev eslint eslint-config-prettier eslint-plugin-cypress eslint-plugin-jest eslint-plugin-prettier prettier
+```
+
+and create `.eslintrc.js` with the following:
+
+```js
+module.exports = {
+  extends: ['react-app', 'prettier'],
+  plugins: ['prettier', 'jest', 'cypress'],
+  parser: 'babel-eslint',
+  env: {
+    browser: true,
+    'cypress/globals': true,
+    es6: true,
+    'jest/globals': true,
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  rules: {
+    'prettier/prettier': 'warn',
+  },
+};
+```
+
+This file adds Prettier to Create React App's default linting rules and
+makes ESLint aware of global variables provided by ES6, the browser, Jest, and Cypress.
+
+Add also a `.prettierrc.js` file:
+
+```js
+module.exports = {
+  arrowParens: 'avoid',
+  bracketSpacing: false,
+  singleQuote: true,
+  trailingComma: 'all',
+};
+```
+
+If not done already install EsLint Extension for VS Code.
