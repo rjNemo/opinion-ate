@@ -257,3 +257,13 @@ Our `RestaurantList`component needs to:
 - display restaurants once they are loaded
 
 Write 2 tests so each test checks only one behavior.
+
+## Redux
+
+Once they pass, it's time to step back to E2E level. RestaurantList expect a restaurant array from Redux store.
+
+Install redux
+
+```sh
+yarn add @reduxjs/toolkit react-redux
+```
