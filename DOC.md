@@ -27,7 +27,7 @@ Setting up a project involves:
 - Get tests running on CI
 - Get the app automatically deploying to a hosting service
 
-### Stories
+## Stories
 
 ```
 As a `role`, I want to `action` so that `benefit`
@@ -46,14 +46,14 @@ One may use `Trello` or `BugBuster` to do so.
 - as `user` I want the app to `Show Loading and Error States` to have visual feedback
 - as `user` I want to `Add Restaurants` to give my opinion.
 
-### Dev env
+## Dev env
 
 - git
 - node
 - npm or yarn
 - editor: vs code
 
-### Autoformatting
+## Autoformatting
 
 CRA comes with built-in setting but we can have ours so the editor can see them:
 
@@ -101,7 +101,7 @@ module.exports = {
 
 If not done already install EsLint Extension for VS Code.
 
-### End-to-end testing
+## End-to-end testing
 
 Install `cypress`
 
@@ -138,7 +138,7 @@ describe('Smoke test', () => {
 });
 ```
 
-### CI
+## CI
 
 Use Github actions and perform feature work in branches.
 
@@ -179,7 +179,7 @@ jobs:
 
 When work is finished, create a pull request and once the test have passed merge it to master and delete former branch.
 
-### Automatic Deploy in production
+## Automatic Deploy in production
 
 Even though our app doesn't do anything yet it's time to deploy.
 
@@ -192,3 +192,18 @@ yarn build
 Then configure a new web service in [Render](https://render.com) and set auto-deploy.
 
 This project is deployed at this [URL](https://opinion-ate.onrender.com).
+
+## Restaurants List
+
+To build this first feature we follow outside-in TDD:
+
+1.  write failing E2E test
+1.  build functionality via multiple red-green-refactor loops:
+    1.  write failing unit test
+    1.  write enough production code
+    1.  refactor
+1.  cycle...
+
+This functionality is a **vertical slice**, it touches multiple layers. It's good for starters as it builds something in all application layer to ensure they all work together
+
+Write the code you wish you had.
