@@ -207,3 +207,34 @@ To build this first feature we follow outside-in TDD:
 This functionality is a **vertical slice**, it touches multiple layers. It's good for starters as it builds something in all application layer to ensure they all work together
 
 Write the code you wish you had.
+
+Write `cypress/integration/listing-restaurants.spec.js` E2E test to see restaurants list displayed:
+
+```js
+describe('Restaurant list', () => {
+  it('shows restaurants from the server', () => {
+    const pastaPlace = 'Sushi Place';
+    const saladPlace = 'Salad Place';
+
+    // prevent accessing real backend
+    cy.server({force404: true});
+
+    cy.route({
+      method: 'GET',
+      url:
+        'https://api.outsidein.dev/wRLRwKdVZ9N7ei4PeyIyWOG9Sj8hYZAa/restaurants',
+      response: [
+        {id: 1, name: pastaPlace},
+        {id: 2, name: saladPlace},
+      ],
+    });
+
+    // visit root url
+    cy.visit('/');
+    cy.contains(pastaPlace);
+    cy.contains(saladPlace);
+  });
+});
+```
+
+Commit to have focused commits.
