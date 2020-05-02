@@ -208,6 +208,8 @@ This functionality is a **vertical slice**, it touches multiple layers. It's goo
 
 Write the code you wish you had.
 
+### Specification
+
 Write `cypress/integration/listing-restaurants.spec.js` E2E test to see restaurants list displayed:
 
 ```js
@@ -238,3 +240,18 @@ describe('Restaurant list', () => {
 ```
 
 Commit to have focused commits.
+
+### Structure
+
+For this feature the code will touch 3 layers:
+
+1. UI: React components
+1. State management: Redux store
+1. API calls: Axios client
+
+Write code `outside-in` so start with UI and write the code you wish you had.
+
+Our `RestaurantList`component needs to:
+
+- request restaurants to be loaded
+- display restaurants once they are loaded
