@@ -255,3 +255,5 @@ Our `RestaurantList`component needs to:
 
 - request restaurants to be loaded
 - display restaurants once they are loaded
+
+Write 2 tests so each test checks only one behavior.
