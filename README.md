@@ -162,10 +162,10 @@ jobs:
             - uses: actions/checkout@v2
             - name: Install dependencies
             # frozen-lockfile ensures yarn will not install differents dependencies that the one specified in lockfile
-            run: yarn install --frozen-lockfile
+              run: yarn install --frozen-lockfile
             - name: Unit tests
             # --watchAll=false so they run only once
-            run: yarn-test --watchAll=false
+              run: yarn-test --watchAll=false
             - name: E2E tests
             # latest stable version
             - uses: cypress-io/github-action@v1
