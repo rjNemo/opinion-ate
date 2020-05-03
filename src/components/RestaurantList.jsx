@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import {selectRestaurants, loadRestaurants} from '../store/restaurantSlice';
+import {connect} from 'react-redux';
+import {loadRestaurants} from '../store/restaurants/actions';
 
-export const RestaurantList = ({loadRestaurants, restaurants}) => {
-  useEffect(() => loadRestaurants(), [loadRestaurants]);
+export const RestaurantList = ({restaurants, loadRestaurants}) => {
+  useEffect(() => {
+    loadRestaurants();
+  }, [loadRestaurants]);
 
   return (
     <ul>
@@ -14,18 +16,10 @@ export const RestaurantList = ({loadRestaurants, restaurants}) => {
   );
 };
 
-/**
- * Container to get data from the store
- */
-const RestaurantListContainer = () => {
-  const restaurants = useSelector(selectRestaurants);
+const selectRestaurants = state => ({restaurants: state.restaurants.records});
+const selectLoadRestaurants = {loadRestaurants};
 
-  return (
-    <RestaurantList
-      restaurants={restaurants}
-      loadRestaurants={loadRestaurants}
-    />
-  );
-};
-
-export default RestaurantListContainer;
+export default connect(
+  selectRestaurants,
+  selectLoadRestaurants,
+)(RestaurantList);
