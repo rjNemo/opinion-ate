@@ -27,11 +27,7 @@ Setting up a project involves:
 - Get tests running on CI
 - Get the app automatically deploying to a hosting service
 
-<<<<<<< HEAD
-### Stories
-=======
 ## Stories
->>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 ```
 As a `role`, I want to `action` so that `benefit`
@@ -50,22 +46,14 @@ One may use `Trello` or `BugBuster` to do so.
 - as `user` I want the app to `Show Loading and Error States` to have visual feedback
 - as `user` I want to `Add Restaurants` to give my opinion.
 
-<<<<<<< HEAD
-### Dev env
-=======
 ## Dev env
->>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 - git
 - node
 - npm or yarn
 - editor: vs code
 
-<<<<<<< HEAD
-### Autoformatting
-=======
 ## Autoformatting
->>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 CRA comes with built-in setting but we can have ours so the editor can see them:
 
@@ -113,11 +101,7 @@ module.exports = {
 
 If not done already install EsLint Extension for VS Code.
 
-<<<<<<< HEAD
-### End-to-end testing
-=======
 ## End-to-end testing
->>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 Install `cypress`
 
@@ -154,11 +138,7 @@ describe('Smoke test', () => {
 });
 ```
 
-<<<<<<< HEAD
-### CI
-=======
 ## CI
->>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 Use Github actions and perform feature work in branches.
 
@@ -199,11 +179,7 @@ jobs:
 
 When work is finished, create a pull request and once the test have passed merge it to master and delete former branch.
 
-<<<<<<< HEAD
-### Automatic Deploy in production
-=======
 ## Automatic Deploy in production
->>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 Even though our app doesn't do anything yet it's time to deploy.
 
@@ -216,8 +192,6 @@ yarn build
 Then configure a new web service in [Render](https://render.com) and set auto-deploy.
 
 This project is deployed at this [URL](https://opinion-ate.onrender.com).
-<<<<<<< HEAD
-=======
 
 ## Restaurants List
 
@@ -302,4 +276,3 @@ Install Axios because Cypress's network request stubbing doesn't currently work 
 ```sh
 yarn add axios
 ```
->>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
