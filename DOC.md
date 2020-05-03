@@ -27,7 +27,11 @@ Setting up a project involves:
 - Get tests running on CI
 - Get the app automatically deploying to a hosting service
 
+<<<<<<< HEAD
 ### Stories
+=======
+## Stories
+>>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 ```
 As a `role`, I want to `action` so that `benefit`
@@ -46,14 +50,22 @@ One may use `Trello` or `BugBuster` to do so.
 - as `user` I want the app to `Show Loading and Error States` to have visual feedback
 - as `user` I want to `Add Restaurants` to give my opinion.
 
+<<<<<<< HEAD
 ### Dev env
+=======
+## Dev env
+>>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 - git
 - node
 - npm or yarn
 - editor: vs code
 
+<<<<<<< HEAD
 ### Autoformatting
+=======
+## Autoformatting
+>>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 CRA comes with built-in setting but we can have ours so the editor can see them:
 
@@ -101,7 +113,11 @@ module.exports = {
 
 If not done already install EsLint Extension for VS Code.
 
+<<<<<<< HEAD
 ### End-to-end testing
+=======
+## End-to-end testing
+>>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 Install `cypress`
 
@@ -138,7 +154,11 @@ describe('Smoke test', () => {
 });
 ```
 
+<<<<<<< HEAD
 ### CI
+=======
+## CI
+>>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 Use Github actions and perform feature work in branches.
 
@@ -179,7 +199,11 @@ jobs:
 
 When work is finished, create a pull request and once the test have passed merge it to master and delete former branch.
 
+<<<<<<< HEAD
 ### Automatic Deploy in production
+=======
+## Automatic Deploy in production
+>>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51
 
 Even though our app doesn't do anything yet it's time to deploy.
 
@@ -192,3 +216,90 @@ yarn build
 Then configure a new web service in [Render](https://render.com) and set auto-deploy.
 
 This project is deployed at this [URL](https://opinion-ate.onrender.com).
+<<<<<<< HEAD
+=======
+
+## Restaurants List
+
+To build this first feature we follow outside-in TDD:
+
+1.  write failing E2E test
+1.  build functionality via multiple red-green-refactor loops:
+    1.  write failing unit test
+    1.  write enough production code
+    1.  refactor
+1.  cycle...
+
+This functionality is a **vertical slice**, it touches multiple layers. It's good for starters as it builds something in all application layer to ensure they all work together
+
+Write the code you wish you had.
+
+### Specification
+
+Write `cypress/integration/listing-restaurants.spec.js` E2E test to see restaurants list displayed:
+
+```js
+describe('Restaurant list', () => {
+  it('shows restaurants from the server', () => {
+    const pastaPlace = 'Sushi Place';
+    const saladPlace = 'Salad Place';
+
+    // prevent accessing real backend
+    cy.server({force404: true});
+
+    cy.route({
+      method: 'GET',
+      url:
+        'https://api.outsidein.dev/wRLRwKdVZ9N7ei4PeyIyWOG9Sj8hYZAa/restaurants',
+      response: [
+        {id: 1, name: pastaPlace},
+        {id: 2, name: saladPlace},
+      ],
+    });
+
+    // visit root url
+    cy.visit('/');
+    cy.contains(pastaPlace);
+    cy.contains(saladPlace);
+  });
+});
+```
+
+Commit to have focused commits.
+
+### Structure
+
+For this feature the code will touch 3 layers:
+
+1. UI: React components
+1. State management: Redux store
+1. API calls: Axios client
+
+Write code `outside-in` so start with UI and write the code you wish you had.
+
+Our `RestaurantList`component needs to:
+
+- request restaurants to be loaded
+- display restaurants once they are loaded
+
+Write 2 tests so each test checks only one behavior.
+
+## Redux
+
+Once they pass, it's time to step back to E2E level. RestaurantList expect a restaurant array from Redux store.
+
+Install redux
+
+```sh
+yarn add redux react-redux redux-devtools-extension redux-thunk
+```
+
+## API Client
+
+No unit testing, the E2E tests will drive implementation.
+Install Axios because Cypress's network request stubbing doesn't currently work for fetch():
+
+```sh
+yarn add axios
+```
+>>>>>>> a8e4e3043d9cdb3e3218aec614735aa2e7848d51

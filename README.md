@@ -1,5 +1,7 @@
 # Opinion Ate
 
+![CI tests](https://github.com/rjNemo/opinion-ate/workflows/Test/badge.svg)
+
 An app 📱for tracking reviews of dishes 😋😋😋in different restaurants.
 
 💻[See live](https://opinion-ate.onrender.com).
