@@ -1,9 +1,8 @@
-describe('Restaurant list', () => {
+describe('Listing Restaurants', () => {
   it('shows restaurants from the server', () => {
-    const pastaPlace = 'Sushi Place';
-    const saladPlace = 'Salad Place';
+    const sushiPlace = 'Sushi Place';
+    const pizzaPlace = 'Pizza Place';
 
-    // prevent accessing real backend
     cy.server({force404: true});
 
     cy.route({
@@ -11,14 +10,13 @@ describe('Restaurant list', () => {
       url:
         'https://api.outsidein.dev/wRLRwKdVZ9N7ei4PeyIyWOG9Sj8hYZAa/restaurants',
       response: [
-        {id: 1, name: pastaPlace},
-        {id: 2, name: saladPlace},
+        {id: 1, name: sushiPlace},
+        {id: 2, name: pizzaPlace},
       ],
     });
 
-    // visit root url
     cy.visit('/');
-    cy.contains(pastaPlace);
-    cy.contains(saladPlace);
+    cy.contains(sushiPlace);
+    cy.contains(pizzaPlace);
   });
 });

@@ -265,5 +265,14 @@ Once they pass, it's time to step back to E2E level. RestaurantList expect a res
 Install redux
 
 ```sh
-yarn add @reduxjs/toolkit react-redux
+yarn add redux react-redux redux-devtools-extension redux-thunk
+```
+
+## API Client
+
+No unit testing, the E2E tests will drive implementation.
+Install Axios because Cypress's network request stubbing doesn't currently work for fetch():
+
+```sh
+yarn add axios
 ```
