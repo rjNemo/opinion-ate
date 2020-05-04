@@ -24,7 +24,7 @@ describe('Creating a restaurant', () => {
 
     cy.visit('/');
 
-    cy.get('[label="Add Restaurant"]').type(restaurantName);
+    cy.get('[placeholder="Add Restaurant"]').type(restaurantName);
     cy.contains('Add').click();
 
     cy.wait('@addRestaurant')

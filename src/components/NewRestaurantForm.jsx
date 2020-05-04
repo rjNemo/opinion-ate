@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TextField, Button, makeStyles} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -10,18 +10,35 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const NewRestaurantForm = () => {
+export const NewRestaurantForm = ({createRestaurant}) => {
   const classes = useStyles();
 
+  const [name, setName] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    createRestaurant(name);
+  };
+
+  const handleChange = e => setName(e.target.value);
+
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={handleSubmit}>
       <TextField
         placeholder="Add Restaurant"
+        value={name}
+        onChange={handleChange}
         fullWidth
         variant="outlined"
-        label="Add Restaurant"
+        // label="Add Restaurant"
       />
-      <Button variant="contained" color="primary" className={classes.button}>
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        className={classes.button}
+        data-testid="new-restaurant-submit-button"
+      >
         Add
       </Button>
     </form>
