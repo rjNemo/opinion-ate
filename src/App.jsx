@@ -21,7 +21,7 @@ const App = () => {
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Opinion Ate</Typography>
+          <Typography variant="h5">Opinion Ate</Typography>
         </Toolbar>
       </AppBar>
       <Container>

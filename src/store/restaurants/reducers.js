@@ -21,7 +21,6 @@ const loading = (state = false, action) => {
     case STORE_RESTAURANTS:
     case RECORDS_LOADING_ERROR:
       return false;
-
     default:
       return state;
   }
