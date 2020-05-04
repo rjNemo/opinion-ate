@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {TextField, Button, makeStyles} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import {createRestaurant} from '../store/restaurants/actions';
 
 const useStyles = makeStyles(theme => ({
@@ -16,16 +17,23 @@ export const NewRestaurantForm = ({createRestaurant}) => {
   const classes = useStyles();
 
   const [name, setName] = useState('');
+  const [validationError, setValidationError] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
-    createRestaurant(name).then(() => setName(''));
+    if (name) {
+      setValidationError(false);
+      createRestaurant(name).then(() => setName(''));
+    } else {
+      setValidationError(true);
+    }
   };
 
   const handleChange = e => setName(e.target.value);
 
   return (
     <form className={classes.form} onSubmit={handleSubmit}>
+      {validationError && <Alert severity="error">Name is required</Alert>}
       <TextField
         placeholder="Add Restaurant"
         value={name}
