@@ -19,8 +19,7 @@ export const NewRestaurantForm = ({createRestaurant}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createRestaurant(name);
-    setName('');
+    createRestaurant(name).then(() => setName(''));
   };
 
   const handleChange = e => setName(e.target.value);
