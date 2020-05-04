@@ -18,12 +18,18 @@ export const NewRestaurantForm = ({createRestaurant}) => {
 
   const [name, setName] = useState('');
   const [validationError, setValidationError] = useState(false);
+  const [serverError, setServerError] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
     if (name) {
       setValidationError(false);
-      createRestaurant(name).then(() => setName(''));
+      setServerError(false);
+      createRestaurant(name)
+        .then(() => setName(''))
+        .catch(() => {
+          setServerError(true);
+        });
     } else {
       setValidationError(true);
     }
@@ -33,6 +39,11 @@ export const NewRestaurantForm = ({createRestaurant}) => {
 
   return (
     <form className={classes.form} onSubmit={handleSubmit}>
+      {serverError && (
+        <Alert severity="error">
+          The restaurant could not be saved. Please try again.
+        </Alert>
+      )}
       {validationError && <Alert severity="error">Name is required</Alert>}
       <TextField
         placeholder="Add Restaurant"

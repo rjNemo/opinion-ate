@@ -7,6 +7,8 @@ import flushPromises from 'flush-promises';
 describe('NewRestaurantForm', () => {
   const restaurantName = 'Sushi Place';
   const requiredError = 'Name is required';
+  const serverError = 'The restaurant could not be saved. Please try again.';
+
   let createRestaurant;
   let context;
 
@@ -19,6 +21,11 @@ describe('NewRestaurantForm', () => {
     it('does not display a validation error', () => {
       const {queryByText} = context;
       expect(queryByText(requiredError)).toBeNull();
+    });
+
+    it('does not display a server error', () => {
+      const {queryByText} = context;
+      expect(queryByText(serverError)).toBeNull();
     });
   });
 
@@ -47,6 +54,11 @@ describe('NewRestaurantForm', () => {
     it('does not display a validation error', () => {
       const {queryByText} = context;
       expect(queryByText(requiredError)).toBeNull();
+    });
+
+    it('does not display a server error', () => {
+      const {queryByText} = context;
+      expect(queryByText(serverError)).toBeNull();
     });
   });
 
@@ -93,6 +105,55 @@ describe('NewRestaurantForm', () => {
     it('clears the validation error', () => {
       const {queryByText} = context;
       expect(queryByText(requiredError)).toBeNull();
+    });
+  });
+
+  describe('when retrying after a server error', () => {
+    beforeEach(async () => {
+      createRestaurant.mockRejectedValueOnce().mockResolvedValueOnce();
+
+      const {getByPlaceholderText, getByTestId} = context;
+      await userEvent.type(
+        getByPlaceholderText('Add Restaurant'),
+        restaurantName,
+      );
+      userEvent.click(getByTestId('new-restaurant-submit-button'));
+      await act(flushPromises);
+      userEvent.click(getByTestId('new-restaurant-submit-button'));
+      return act(flushPromises);
+    });
+
+    it('clears the server error', () => {
+      const {queryByText} = context;
+      expect(queryByText(serverError)).toBeNull();
+    });
+  });
+
+  describe('when the store action rejects', () => {
+    beforeEach(async () => {
+      createRestaurant.mockRejectedValue();
+
+      const {getByPlaceholderText, getByTestId} = context;
+
+      await userEvent.type(
+        getByPlaceholderText('Add Restaurant'),
+        restaurantName,
+      );
+      userEvent.click(getByTestId('new-restaurant-submit-button'));
+
+      return act(flushPromises);
+    });
+
+    it('displays a server error', () => {
+      const {queryByText} = context;
+      expect(queryByText(serverError)).not.toBeNull();
+    });
+
+    it('does not clear the name', () => {
+      const {getByPlaceholderText} = context;
+      expect(getByPlaceholderText('Add Restaurant').value).toEqual(
+        restaurantName,
+      );
     });
   });
 });
