@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import {TextField, Button, makeStyles} from '@material-ui/core';
+import {createRestaurant} from '../store/restaurants/actions';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -45,4 +47,7 @@ export const NewRestaurantForm = ({createRestaurant}) => {
   );
 };
 
-export default NewRestaurantForm;
+const selectProps = null;
+const selectDispatch = {createRestaurant};
+
+export default connect(selectProps, selectDispatch)(NewRestaurantForm);
