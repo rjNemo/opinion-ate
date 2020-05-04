@@ -18,7 +18,7 @@ export const RestaurantList = ({
   }, [loadRestaurants]);
 
   return (
-    <>
+    <div>
       {loading && <CircularProgress data-testid="loading-indicator" />}
       {loadError && (
         <Alert severity="error">Restaurants could not be loaded.</Alert>
@@ -30,7 +30,7 @@ export const RestaurantList = ({
           </ListItem>
         ))}
       </List>
-    </>
+    </div>
   );
 };
 
