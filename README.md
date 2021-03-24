@@ -2,13 +2,13 @@
 
 ![CI tests](https://github.com/rjNemo/opinion-ate/workflows/Test/badge.svg)
 
-An app 📱for tracking reviews of dishes 😋😋😋in different restaurants.
+An app 📱for tracking reviews of dishes 😋😋😋 in different restaurants.
 
 💻[See live](https://opinion-ate.onrender.com).
 
 ## Installation
 
-🚧Dependencies are locked with a `yarn.lock` file, so please use `yarn` and not `npm` for installing them.
+🚧 Dependencies are locked with a `yarn.lock` file, so please use `yarn` and not `npm` for installing them.
 
 ## Built with
 
